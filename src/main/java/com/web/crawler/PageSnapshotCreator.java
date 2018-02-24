@@ -3,7 +3,7 @@ package com.web.crawler;
 import com.web.crawler.crawling.WebCrawler;
 import com.web.crawler.extract.PageExtractor;
 import com.web.crawler.model.Page;
-import com.web.crawler.model.PageNode;
+import com.web.crawler.model.PageSnapshot;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,13 +11,13 @@ import java.util.Set;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toSet;
 
-public class PageNodeBuilder {
+public class PageSnapshotCreator {
 
     private final WebCrawler webCrawler;
     private final PageExtractor pageExtractor;
     private final Set<String> visitedPage;
 
-    public PageNodeBuilder(
+    public PageSnapshotCreator(
             WebCrawler webCrawler,
             PageExtractor pageExtractor) {
 
@@ -26,19 +26,19 @@ public class PageNodeBuilder {
         this.visitedPage = new HashSet<>();
     }
 
-    public PageNode createPageNode(String url, int depth) {
+    public PageSnapshot createPageNode(String url, int depth) {
         return getPage(pageExtractor.extractPage(url), depth);
     }
 
-    private PageNode getPage(Page page, int depth) {
+    private PageSnapshot getPage(Page page, int depth) {
         if (depth == 0) {
-            return new PageNode(page, emptyList());
+            return new PageSnapshot(page, emptyList());
         }
 
-        return new PageNode(page, getLinks(page, depth));
+        return new PageSnapshot(page, getLinks(page, depth));
     }
 
-    private Set<PageNode> getLinks(Page root, int depth) {
+    private Set<PageSnapshot> getLinks(Page root, int depth) {
         return webCrawler.crawl(root)
                 .stream()
                 .filter(p -> !visitedPage.contains(p.getAddress()))

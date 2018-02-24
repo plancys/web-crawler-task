@@ -2,12 +2,12 @@ package com.web.crawler.model;
 
 import java.util.Collection;
 
-public class PageNode {
+public class PageSnapshot {
 
     private final Page page;
-    private final Collection<PageNode> links;
+    private final Collection<PageSnapshot> links;
 
-    public PageNode(Page page, Collection<PageNode> links) {
+    public PageSnapshot(Page page, Collection<PageSnapshot> links) {
         this.page = page;
         this.links = links;
     }
@@ -25,7 +25,7 @@ public class PageNode {
         return page;
     }
 
-    public Collection<PageNode> getLinks() {
+    public Collection<PageSnapshot> getLinks() {
         return links;
     }
 }
