@@ -1,11 +1,20 @@
 # Web crawler
 
+### Ogólny zarys
 Celem zadania jest zaimplementowanie mechanizmu który będzie potrafił pobrać stronę WWW na dysk naszego komputera.
 Zadanie zawiera już podstawowy design: 
 1. `PageExtractor` - dostaje adres strony i pobiera jej źródło (body) zapisując w obiekcie `Page`.
 2. `WebCrawler` - dostaje obiekt `Page`, analizuje jakie linki wychodzą ze tej strony, następnie pobiera te linki opakowując je w kolekcje typu `Page`.
 3. `PageSnapshotCreator` - tworzy strukturę strony (a właściwie połączeń między podstronami) zapisujać je w obiekcie typu `PageSnapshot`.
 4. `PageDownloader` - pobiera stronę dostając ją w obiekcie typu `PageSnapshot` do zadanego folderu.
+
+### Wymagania
+1. Kod powinien być napisany czysto - zgodnie z założeniami `SOLID`.
+2. Każda klasa którą napiszesz powinna mieć swój test jednostkowy.
+3. Pozostałe założenia:
+    * Klasa nie powinna mieć więcej niż 200 linii
+    * Metoda nie powinna mieć więcej niż 20 linii
+
 
 
 ### TODOs
