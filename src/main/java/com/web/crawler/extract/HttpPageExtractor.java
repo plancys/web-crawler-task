@@ -49,5 +49,4 @@ public class HttpPageExtractor implements PageExtractor {
         Page page = httpPageExtractor.extractPage("http://example.com/");
         System.out.println(page.toString());
     }
-
 }

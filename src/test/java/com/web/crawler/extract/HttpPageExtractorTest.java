@@ -1,19 +1,20 @@
-package com.web.crawler.crawling;
+package com.web.crawler.extract;
 
-import org.junit.Assert;
+import com.web.crawler.model.Page;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.Assert.*;
 
-public class RegexCrawlerTest {
+public class HttpPageExtractorTest {
+
+
 
     @Test
-    public void shouldExtractLinks() {
+    public void shouldExtractPage() {
 
         //Given
-        RegexCrawler regexCrawler = new RegexCrawler();
-        String websiteSource = "<!doctype html>\n" +
+        String link = "http://example.com/";
+        String source = "<!doctype html>\n" +
                 "<html>\n" +
                 "<head>\n" +
                 "    <title>Example Domain</title>\n" +
@@ -64,11 +65,16 @@ public class RegexCrawlerTest {
                 "</body>\n" +
                 "</html>\n";
 
+
+        Page page = new Page(link, source);
+        PageExtractor pageExtractor = new HttpPageExtractor();
+
         //When
-        List<String> result = regexCrawler.find(websiteSource);
+        Page result = pageExtractor.extractPage(link);
 
         //Then
-        Assert.assertEquals(Arrays.asList("http://www.iana.org/domains/example"), result);
-
+        assertEquals(page.getAddress(), result.getAddress());
+        assertEquals(page.getBody(), result.getBody());
+        assertEquals(page, result);
     }
 }
