@@ -9,19 +9,19 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class PageExtract implements PageExtractor {
+public class HttpPageExtractor implements PageExtractor {
 
     @Override
-    public Page extractPage(String spec) {
-        URL urll;
+    public Page extractPage(String link) {
+        URL url;
         InputStream is = null;
         BufferedReader br = null;
         String line;
         StringBuilder sb = new StringBuilder();
 
         try {
-            urll = new URL(spec);
-            is = urll.openStream();  // throws an IOException
+            url = new URL(link);
+            is = url.openStream();  // throws an IOException
             br = new BufferedReader(new InputStreamReader(is));
 
             while ((line = br.readLine()) != null) {
@@ -33,7 +33,7 @@ public class PageExtract implements PageExtractor {
             ioe.printStackTrace();
         } finally {
             try {
-                if(br != null) {
+                if (br != null) {
                     br.close();
                 }
                 if (is != null) is.close();
@@ -41,12 +41,12 @@ public class PageExtract implements PageExtractor {
                 // nothing to see here
             }
         }
-        return new Page(spec, sb.toString());
+        return new Page(link, sb.toString());
     }
 
     public static void main(String[] args) {
-        PageExtract pageExtract = new PageExtract();
-        Page page = pageExtract.extractPage("http://example.com/");
+        HttpPageExtractor httpPageExtractor = new HttpPageExtractor();
+        Page page = httpPageExtractor.extractPage("http://example.com/");
         System.out.println(page.toString());
     }
 
