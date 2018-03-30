@@ -26,7 +26,7 @@ public class DownloadPageApplication {
         );
 
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode("http://example.com/", 1),
+                pageSnapshotCreator.createPageNode("http://example.com/", 2),
                 tempDirectory);
     }
 

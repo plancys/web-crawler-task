@@ -25,7 +25,7 @@ public class Downloader implements PageDownloader {
                 writer.write(pageSnapshot.getPage().getBody());
                 pageSnapshot.getLinks().stream()
                         .flatMap(n -> n.getLinks().stream())
-                        .forEach(n -> downloadPage(n, new File("dsa")));
+                        .forEach(n -> downloadPage(n, outputDirectory));
 
         }
         catch (IOException e){
