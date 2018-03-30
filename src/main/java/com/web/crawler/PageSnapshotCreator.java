@@ -1,6 +1,8 @@
 package com.web.crawler;
 
+import com.web.crawler.crawling.Crawler;
 import com.web.crawler.crawling.WebCrawler;
+import com.web.crawler.extract.HttpPageExtractor;
 import com.web.crawler.extract.PageExtractor;
 import com.web.crawler.model.Page;
 import com.web.crawler.model.PageSnapshot;
