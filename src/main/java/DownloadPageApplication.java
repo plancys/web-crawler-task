@@ -1,6 +1,5 @@
 import com.web.crawler.PageSnapshotCreator;
 import com.web.crawler.crawling.Crawler;
-import com.web.crawler.crawling.WebCrawler;
 import com.web.crawler.downlaod.Downloader;
 import com.web.crawler.downlaod.PageDownloader;
 import com.web.crawler.extract.HttpPageExtractor;
@@ -18,7 +17,7 @@ public class DownloadPageApplication {
 
         //Path tempDirectory = createOutputDirectory();
         String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\";
-        File tempDirectory = new File("C:\\Users\\Jaras\\Desktop\\Temporary\\");
+        File tempDirectory = new File(path);
 
         PageSnapshotCreator pageSnapshotCreator = new PageSnapshotCreator(
                 new Crawler(),
@@ -26,7 +25,7 @@ public class DownloadPageApplication {
         );
 
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode("http://example.com/", 2),
+                pageSnapshotCreator.createPageNode("http://example.com/", 3),
                 tempDirectory);
     }
 

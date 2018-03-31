@@ -16,7 +16,7 @@ public class Crawler implements WebCrawler {
     @Override
     public Collection<Page> crawl(Page page) {
 
-        List<String> links = regexCrawler.find(page.getBody());
+        List<String> links = regexCrawler.find(page.getAddress(), page.getBody());
 
         return links.stream()
                 .map(link -> pageExtractor.extractPage(link))
