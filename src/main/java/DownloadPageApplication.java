@@ -1,7 +1,7 @@
 import com.web.crawler.PageSnapshotCreator;
 import com.web.crawler.crawling.Crawler;
-import com.web.crawler.downlaod.Downloader;
-import com.web.crawler.downlaod.PageDownloader;
+import com.web.crawler.download.Downloader;
+import com.web.crawler.download.PageDownloader;
 import com.web.crawler.extract.HttpPageExtractor;
 
 import java.io.File;
