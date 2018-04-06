@@ -13,6 +13,7 @@ public class RegexCrawlerTest {
 
         //Given
         RegexCrawler regexCrawler = new RegexCrawler();
+        String url = "http://example.com/";
         String websiteSource = "<!doctype html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -65,7 +66,7 @@ public class RegexCrawlerTest {
                 "</html>\n";
 
         //When
-        List<String> result = regexCrawler.find(websiteSource);
+        List<String> result = regexCrawler.find(url, websiteSource);
 
         //Then
         Assert.assertEquals(Arrays.asList("http://www.iana.org/domains/example"), result);
