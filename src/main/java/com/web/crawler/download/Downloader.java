@@ -17,15 +17,17 @@ public class Downloader implements PageDownloader {
     @Override
     public void downloadPage(PageSnapshot pageSnapshot, File outputDirectory) {
 
-        //String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\";
+        saveFile(pageSnapshot, outputDirectory);
+        pageSnapshot.getLinks()
+                .forEach(link -> downloadPage(link, outputDirectory));
+    }
 
-        //String fileName= outputDirectory.getAbsolutePath() + "\\" +
-        //System.out.println(new File(".", "s").getAbsolutePath());
+    private void saveFile(PageSnapshot pageSnapshot, File outputDirectory) {
 
         byte[] data = pageSnapshot.getPage().getBody().getBytes();
-        Path p = Paths.get("C:\\Users\\Jaras\\Desktop\\Temporary\\temp\\" + Generator.generateName(pageSnapshot));
-        OutputStream out = null;
+        Path p = Paths.get(outputDirectory.getAbsolutePath() + Generator.generateName(pageSnapshot));
 
+        OutputStream out = null;
         try {
             Files.createDirectories(p.getParent());
             out = new BufferedOutputStream(Files.newOutputStream(p, CREATE, APPEND));
@@ -41,9 +43,6 @@ public class Downloader implements PageDownloader {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-            pageSnapshot.getLinks().stream()
-                    .forEach(link -> downloadPage(link, outputDirectory));
         }
     }
 }
