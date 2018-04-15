@@ -1,6 +1,5 @@
 package com.web.crawler.crawling;
 
-import com.web.crawler.extract.HttpPageExtractor;
 import com.web.crawler.extract.PageExtractor;
 import com.web.crawler.model.Page;
 
@@ -10,8 +9,13 @@ import java.util.stream.Collectors;
 
 public class Crawler implements WebCrawler {
 
-    RegexCrawler regexCrawler = new RegexCrawler();
-    PageExtractor pageExtractor = new HttpPageExtractor();
+    private RegexCrawler regexCrawler;
+    private PageExtractor pageExtractor;
+
+    public Crawler(RegexCrawler regexCrawler, PageExtractor pageExtractor) {
+        this.regexCrawler = regexCrawler;
+        this.pageExtractor = pageExtractor;
+    }
 
     @Override
     public Collection<Page> crawl(Page page) {
