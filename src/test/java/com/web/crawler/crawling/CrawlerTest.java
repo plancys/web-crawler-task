@@ -5,7 +5,6 @@ import com.web.crawler.model.Page;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +24,6 @@ public class CrawlerTest {
         regexCrawler = Mockito.mock(RegexCrawler.class);
         pageExtractor = Mockito.mock(PageExtractor.class);
         crawler = new Crawler(regexCrawler, pageExtractor);
-        MockitoAnnotations.initMocks(this);
     }
 
     @Test

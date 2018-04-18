@@ -25,7 +25,7 @@ public class Downloader implements PageDownloader {
     private void saveFile(PageSnapshot pageSnapshot, File outputDirectory) {
 
         byte[] data = pageSnapshot.getPage().getBody().getBytes();
-        Path p = Paths.get(outputDirectory.getAbsolutePath() + Generator.generateName(pageSnapshot));
+        Path p = Paths.get(outputDirectory.getAbsolutePath() + "\\" + Generator.generateName(pageSnapshot));
 
         OutputStream out = null;
         try {
