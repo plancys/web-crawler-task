@@ -17,7 +17,7 @@ public class DownloadPageApplication {
         PageDownloader pageDownloader = new Downloader();
 
         //Path tempDirectory = createOutputDirectory();
-        String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\temp\\";
+        String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\temp";
         File tempDirectory = new File(path);
 
         PageSnapshotCreator pageSnapshotCreator = new PageSnapshotCreator(
