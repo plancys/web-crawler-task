@@ -7,5 +7,5 @@ public interface PageExtractor {
     /**
      * Extracts {@link Page} from given <code>url</code>
      */
-    Page extractPage(String url);
+    Page extractPage(String spec);
 }

@@ -1,6 +1,11 @@
 import com.web.crawler.PageSnapshotCreator;
-import com.web.crawler.downlaod.PageDownloader;
+import com.web.crawler.crawling.Crawler;
+import com.web.crawler.crawling.RegexCrawler;
+import com.web.crawler.download.Downloader;
+import com.web.crawler.download.PageDownloader;
+import com.web.crawler.extract.HttpPageExtractor;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,19 +14,20 @@ public class DownloadPageApplication {
 
     public static void main(String[] args) throws IOException {
 
-        PageDownloader pageDownloader = null; //TODO: change null to your implementation
+        PageDownloader pageDownloader = new Downloader();
 
-        Path tempDirectory = createOutputDirectory();
+        //Path tempDirectory = createOutputDirectory();
+        String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\temp";
+        File tempDirectory = new File(path);
 
         PageSnapshotCreator pageSnapshotCreator = new PageSnapshotCreator(
-                null, // WebCrawler implementation instead of null
-                null //PageExtractor implementation instead of null
+                new Crawler(new RegexCrawler(), new HttpPageExtractor()),
+                new HttpPageExtractor()
         );
 
-        //this operation should download page
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode("http://example.com/", 1),
-                tempDirectory.toFile());
+                pageSnapshotCreator.createPageNode("http://example.com/", 3),
+                tempDirectory);
     }
 
     private static Path createOutputDirectory() throws IOException {

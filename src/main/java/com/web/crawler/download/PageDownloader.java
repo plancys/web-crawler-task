@@ -1,4 +1,4 @@
-package com.web.crawler.downlaod;
+package com.web.crawler.download;
 
 import com.web.crawler.model.PageSnapshot;
 
