@@ -1,6 +1,7 @@
 package com.web.crawler.model;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public class PageSnapshot {
 
@@ -27,5 +28,20 @@ public class PageSnapshot {
 
     public Collection<PageSnapshot> getLinks() {
         return links;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PageSnapshot that = (PageSnapshot) o;
+        return Objects.equals(page, that.page) &&
+                Objects.equals(links, that.links);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(page, links);
     }
 }
