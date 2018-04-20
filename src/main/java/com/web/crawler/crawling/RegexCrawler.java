@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class RegexCrawler {
 
-    private static final String LINK_REGEX = "href=\\\"(.*)\\\"";
+    private static final String LINK_REGEX_HREF = "(href|src)=\\\"(.*)\\\"";
     private static final String CHECK_LINK_REGEX = "www(.*)|https(.*)|http(.*)";
     private static final String MAIN_LINK_REGEX = "(.*)\\.pl|(.*)\\.org|(.*)\\.com";
 
@@ -16,12 +16,12 @@ public class RegexCrawler {
 
         List<String> list = new ArrayList<>();
 
-        Pattern p = Pattern.compile(LINK_REGEX);
+        Pattern p = Pattern.compile(LINK_REGEX_HREF);
 
         Matcher m = p.matcher(websiteSource);
 
         while (m.find()) {
-                list.add(m.group(1));
+                list.add(m.group(2));
         }
         return list.stream()
                 .map(link -> checkLinks(url, link))
