@@ -3,6 +3,7 @@ import com.web.crawler.crawling.Crawler;
 import com.web.crawler.crawling.RegexCrawler;
 import com.web.crawler.download.Downloader;
 import com.web.crawler.download.PageDownloader;
+import com.web.crawler.download.namegenerator.NameGenerator;
 import com.web.crawler.extract.HttpPageExtractor;
 
 import java.io.File;
@@ -14,7 +15,7 @@ public class DownloadPageApplication {
 
     public static void main(String[] args) throws IOException {
 
-        PageDownloader pageDownloader = new Downloader();
+        PageDownloader pageDownloader = new Downloader(new NameGenerator());
 
         //Path tempDirectory = createOutputDirectory();
         String path = "C:\\Users\\Jaras\\Desktop\\Temporary\\temp";

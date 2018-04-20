@@ -13,6 +13,11 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Downloader implements PageDownloader {
 
+    Generator generator;
+
+    public Downloader(Generator generator) {
+        this.generator = generator;
+    }
 
     @Override
     public void downloadPage(PageSnapshot pageSnapshot, File outputDirectory) {
@@ -25,7 +30,7 @@ public class Downloader implements PageDownloader {
     private void saveFile(PageSnapshot pageSnapshot, File outputDirectory) {
 
         byte[] data = pageSnapshot.getPage().getBody().getBytes();
-        Path p = Paths.get(outputDirectory.getAbsolutePath() + "\\" + Generator.generateName(pageSnapshot));
+        Path p = Paths.get(outputDirectory.getAbsolutePath() + "\\" + generator.generateName(pageSnapshot));
 
         OutputStream out = null;
         try {
