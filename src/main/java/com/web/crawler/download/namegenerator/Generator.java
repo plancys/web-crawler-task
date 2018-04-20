@@ -9,8 +9,12 @@ public interface Generator {
         String name = pageSnapshot.getPage().getAddress().replaceAll(":|\\.|(https)|(http)", "");
         name = name.replace("/", "\\");
 
-        if (name.substring(name.length() - 3, name.length()).equals("css"))
-            return name.substring(0, name.length() -3) + ".css";
+        if (name.substring(name.length() - 3, name.length()).equals("css")) {
+            return name.substring(0, name.length() - 3) + ".css";
+        }
+        else if (name.substring(name.length() - 2, name.length()).equals("js")) {
+            return name.substring(0, name.length() - 2) + ".js";
+        }
 
         return name + ".html";
     }
