@@ -28,9 +28,9 @@ public class LinkModifierTestSuite {
                 "are provided by <a href=\"http://pti.icann.org\">Public Technical Identifiers</a>,";
 
         //When
-        String refactoredLink = modifier.ModifyLinks(source);
+        String refactoredLinks = modifier.ModifyLinks(source);
 
         //Then
-        assertEquals(expected, refactoredLink);
+        assertEquals(expected, refactoredLinks);
     }
 }
