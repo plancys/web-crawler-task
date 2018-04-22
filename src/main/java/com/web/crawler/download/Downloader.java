@@ -14,6 +14,8 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Downloader implements PageDownloader {
 
+    private static final String SLASH = "\\";
+
     private Generator generator;
     private Modifier modifier;
 
@@ -33,7 +35,7 @@ public class Downloader implements PageDownloader {
     private void saveFile(PageSnapshot pageSnapshot, File outputDirectory) {
 
         byte[] data = modifier.ModifyLinks(pageSnapshot.getPage().getBody()).getBytes();
-        Path p = Paths.get(outputDirectory.getAbsolutePath() + "\\" + generator.generateName(pageSnapshot));
+        Path p = Paths.get(outputDirectory.getAbsolutePath() + SLASH + generator.generateName(pageSnapshot));
 
         OutputStream out = null;
         try {
