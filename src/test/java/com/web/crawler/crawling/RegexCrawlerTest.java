@@ -88,7 +88,7 @@ public class RegexCrawlerTest {
 
         List<String> expected = new ArrayList<>();
         expected.add("http://example.com/_css/2015.1/screen.css");
-        //expected.add("http://example.com/_js/2013.1/jquery.js");  TODO
+        expected.add("http://example.com/_js/2013.1/jquery.js");
         expected.add("http://example.com/domains");
 
 

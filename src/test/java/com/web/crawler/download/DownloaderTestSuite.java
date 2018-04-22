@@ -31,7 +31,7 @@ public class DownloaderTestSuite {
         //Given
         Page page = new Page("www.example.com", "example");
         Collection<PageSnapshot> links = new HashSet<>();
-        links.add(new PageSnapshot(new Page("contact", "contactBody"), new HashSet<>()));
+        links.add(new PageSnapshot(new Page("example.com/contact/domains", "contactBody"), new HashSet<>()));
 
         PageSnapshot pageSnapshot = new PageSnapshot(page, links);
 
@@ -42,8 +42,8 @@ public class DownloaderTestSuite {
         downloader.downloadPage(pageSnapshot, siteDirectory);
 
         //Then
-        List<String> indexContent = Files.readAllLines(new File(siteDirectory, "wwwexamplecom.html").toPath());
-        List<String> contactContent = Files.readAllLines(new File(siteDirectory, "contact.html").toPath());
+        List<String> indexContent = Files.readAllLines(new File(siteDirectory, "example.com\\index.html").toPath());
+        List<String> contactContent = Files.readAllLines(new File(siteDirectory, "example.com\\contact\\domains").toPath());
         assertEquals(indexContent, Arrays.asList("example"));
         assertEquals(contactContent, Arrays.asList("contactBody"));
 
