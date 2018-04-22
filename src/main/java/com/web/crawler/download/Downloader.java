@@ -1,5 +1,6 @@
 package com.web.crawler.download;
 
+import com.web.crawler.download.modifier.Modifier;
 import com.web.crawler.download.namegenerator.Generator;
 import com.web.crawler.model.PageSnapshot;
 
@@ -13,10 +14,12 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class Downloader implements PageDownloader {
 
-    Generator generator;
+    private Generator generator;
+    private Modifier modifier;
 
-    public Downloader(Generator generator) {
+    public Downloader(Generator generator, Modifier modifier) {
         this.generator = generator;
+        this.modifier = modifier;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class Downloader implements PageDownloader {
 
     private void saveFile(PageSnapshot pageSnapshot, File outputDirectory) {
 
-        byte[] data = pageSnapshot.getPage().getBody().getBytes();
+        byte[] data = modifier.ModifyLinks(pageSnapshot.getPage().getBody()).getBytes();
         Path p = Paths.get(outputDirectory.getAbsolutePath() + "\\" + generator.generateName(pageSnapshot));
 
         OutputStream out = null;

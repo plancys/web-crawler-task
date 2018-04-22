@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class LinkModifier implements Modifier {
 
-    private final String LINKS_TO_MODIFY_REGEX = "((src|href)=\\\")/";
+    private static final String LINKS_TO_MODIFY_REGEX = "((src|href)=\\\")/";
 
     @Override
     public String ModifyLinks(String websiteSource) {

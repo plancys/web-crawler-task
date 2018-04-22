@@ -14,7 +14,7 @@ public class LinkModifierTestSuite {
     }
 
     @Test
-    public void shouldModifyLink() {
+    public void shouldModifyLinks() {
         //Given
         String source = "<link rel=\"stylesheet\" media=\"screen\" href=\"/_css/2015.1/screen.css\"/>\n" +
                 "<script type=\"text/javascript\" src=\"/_js/2013.1/jquery.js\"></script>\n" +

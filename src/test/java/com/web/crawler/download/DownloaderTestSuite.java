@@ -1,5 +1,6 @@
 package com.web.crawler.download;
 
+import com.web.crawler.download.modifier.LinkModifier;
 import com.web.crawler.download.namegenerator.NameGenerator;
 import com.web.crawler.model.Page;
 import com.web.crawler.model.PageSnapshot;
@@ -21,7 +22,7 @@ public class DownloaderTestSuite {
 
     @Before
     public void setUp() throws Exception {
-        downloader = new Downloader(new NameGenerator());
+        downloader = new Downloader(new NameGenerator(), new LinkModifier());
     }
 
     @Test
