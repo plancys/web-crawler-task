@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class RegexCrawler {
 
-    private static final String LINK_REGEX_HREF = "(href|src)=\\\"(.*)\\\"";
+    private static final String LINK_REGEX = "(href|src)=\\\"([\\w\\d-_:\\./]+)\\\"";
     private static final String CHECK_LINK_REGEX = "www(.*)|https(.*)|http(.*)";
     private static final String MAIN_LINK_REGEX = "(.*)\\.pl|(.*)\\.org|(.*)\\.com";
 
@@ -16,7 +16,7 @@ public class RegexCrawler {
 
         List<String> list = new ArrayList<>();
 
-        Pattern p = Pattern.compile(LINK_REGEX_HREF);
+        Pattern p = Pattern.compile(LINK_REGEX);
 
         Matcher m = p.matcher(websiteSource);
 
@@ -34,14 +34,11 @@ public class RegexCrawler {
         Matcher m = p.matcher(link);
         url = extractMainLink(url);
 
-        if(url.endsWith("/"))
-            url = url.substring(0, url.length() -1);
-
         if (m.find()) {
-            return link;
+            return validateLinkEnd(extractMainLink(link));
         }
 
-        return url + link;
+        return validateLinkEnd(url) + validateLinkStart(link);
     }
     private String extractMainLink(String url) {
 
@@ -51,6 +48,22 @@ public class RegexCrawler {
         if(m.find())
         return m.group(0);
 
+        return url;
+    }
+
+    private String validateLinkStart(String url) {
+
+        if (!url.startsWith("/")) {
+            return validateLinkEnd("/" + url);
+        }
+        return validateLinkEnd(url);
+    }
+
+    private String validateLinkEnd(String url) {
+
+        if (url.endsWith("/")) {
+            return url.substring(0, url.length() - 1);
+        }
         return url;
     }
 }

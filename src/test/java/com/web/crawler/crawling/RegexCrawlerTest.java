@@ -70,7 +70,7 @@ public class RegexCrawlerTest {
         List<String> result = regexCrawler.find(url, websiteSource);
 
         //Then
-        Assert.assertEquals(Arrays.asList("http://www.iana.org/domains/example"), result);
+        Assert.assertEquals(Arrays.asList("http://www.iana.org"), result);
 
     }
 
@@ -84,12 +84,18 @@ public class RegexCrawlerTest {
                 "\n<script type=\"text/javascript\" src=\"/_js/2013.1/jquery.js\"></script>" +
                 "\n<div class=\"navigation\">\n" +
                 "\t\t\t\t<ul>\n" +
-                "\t\t\t\t\t<li><a href=\"/domains\">Domains</a></li>";
+                "\t\t\t\t\t<li><a href=\"/domains\">Domains</a></li>\n" +
+                " <li><a href=\"/time-zones\">Time Zone Database</a></li>\n" +
+                "<a href=\"about/\" class=\"avoid-break\">Learn more.</a></p>\n" +
+                "an affiliate of <a href=\"http://www.icann.org/\">ICANN</a>.</p>";
 
         List<String> expected = new ArrayList<>();
         expected.add("http://example.com/_css/2015.1/screen.css");
         expected.add("http://example.com/_js/2013.1/jquery.js");
         expected.add("http://example.com/domains");
+        expected.add("http://example.com/time-zones");
+        expected.add("http://example.com/about");
+        expected.add("http://www.icann.org");
 
 
         //When
