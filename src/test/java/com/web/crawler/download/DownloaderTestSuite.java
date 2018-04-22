@@ -1,5 +1,6 @@
 package com.web.crawler.download;
 
+import com.web.crawler.download.namegenerator.NameGenerator;
 import com.web.crawler.model.Page;
 import com.web.crawler.model.PageSnapshot;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class DownloaderTestSuite {
 
     @Before
     public void setUp() throws Exception {
-        downloader = new Downloader();
+        downloader = new Downloader(new NameGenerator());
     }
 
     @Test
