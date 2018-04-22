@@ -28,7 +28,7 @@ public class DownloadPageApplication {
         );
 
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode("http://example.com/", 3),
+                pageSnapshotCreator.createPageNode("https://www.iana.org/", 2),
                 tempDirectory);
     }
 
