@@ -6,6 +6,7 @@ import com.web.crawler.download.PageDownloader;
 import com.web.crawler.download.modifier.LinkModifier;
 import com.web.crawler.download.namegenerator.NameGenerator;
 import com.web.crawler.extract.HttpPageExtractor;
+import com.web.crawler.normalizer.UrlNormalizer;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +29,7 @@ public class DownloadPageApplication {
         );
 
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode("https://www.iana.org/", 2),
+                pageSnapshotCreator.createPageNode(new UrlNormalizer().normalize("https://www.example.com"), 2),
                 tempDirectory);
     }
 

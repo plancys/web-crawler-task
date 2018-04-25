@@ -1,5 +1,7 @@
 package com.web.crawler.crawling;
 
+import com.web.crawler.normalizer.UrlNormalizer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -35,7 +37,7 @@ public class RegexCrawler {
         url = extractMainLink(url);
 
         if (m.find()) {
-            return validateLinkEnd(extractMainLink(link));
+            return new UrlNormalizer().normalize(extractMainLink(link));
         }
 
         return validateLinkEnd(url) + validateLinkStart(link);

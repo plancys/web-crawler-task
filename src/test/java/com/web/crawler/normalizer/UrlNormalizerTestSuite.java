@@ -14,26 +14,35 @@ public class UrlNormalizerTestSuite {
     }
 
     @Test
-    public void shouldValidateUrl() {
+    public void shouldNormalizeUrl() {
 
         //Given
         String testUrlOne = "http://www.example.com";
         String testUrlTwo = "http://example.com";
         String testUrlThree = "example.com";
         String testUrlFour = "example.com/";
+        String testUrlFive = "https://www.iana.org/domains/reserved";
+        String testUrlSix = "http://iana.org/_js_xyz.js";
 
-        String expected = "http://www.example.com";
+        String expectedCaseOne = "http://www.example.com";
+        String expectedCaseTwo = "http://www.iana.org";
 
         //When
-        String validatedUrlOne = normalizer.validate(testUrlOne);
-        String validatedUrlTwo = normalizer.validate(testUrlTwo);
-        String validatedUrlThree = normalizer.validate(testUrlThree);
-        String validatedUrlFour = normalizer.validate(testUrlFour);
+        String validatedUrlOne = normalizer.normalize(testUrlOne);
+        String validatedUrlTwo = normalizer.normalize(testUrlTwo);
+        String validatedUrlThree = normalizer.normalize(testUrlThree);
+        String validatedUrlFour = normalizer.normalize(testUrlFour);
+
+        String validatedUrlFive = normalizer.normalize(testUrlFive);
+        String validatedUrlSix = normalizer.normalize(testUrlSix);
 
         //Then
-        assertEquals(expected, validatedUrlOne);
-        assertEquals(expected, validatedUrlTwo);
-        assertEquals(expected, validatedUrlThree);
-        assertEquals(expected, validatedUrlFour);
+        assertEquals(expectedCaseOne, validatedUrlOne);
+        assertEquals(expectedCaseOne, validatedUrlTwo);
+        assertEquals(expectedCaseOne, validatedUrlThree);
+        assertEquals(expectedCaseOne, validatedUrlFour);
+
+        assertEquals(expectedCaseTwo, validatedUrlFive);
+        assertEquals(expectedCaseTwo, validatedUrlSix);
     }
 }
