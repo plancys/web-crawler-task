@@ -36,6 +36,8 @@ public class NameGenerator implements Generator {
 
     private String generateIndexHtml(String url) {
 
-        return generate(url) + "\\index.html";
+        url = generate(url);
+
+        return url + "\\index.html";
     }
 }
