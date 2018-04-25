@@ -7,19 +7,25 @@ import java.util.regex.Pattern;
 
 public class NameGenerator implements Generator {
 
-    private static final String MAIN_LINK_REGEX = "(.+)\\.\\w+";
+    private static final String MAIN_LINK_REGEX = "http[s]*://www\\.[\\w-]+\\.\\w+";
     private static final String GENERATE_NAME_REGEX = "\\w+\\..*\\w+";
+    private static final String CSS_JS_REGEX = "(\\.css|\\.js)";
 
     public String generateName(PageSnapshot pageSnapshot) {
 
         String url = pageSnapshot.getPage().getAddress();
         Matcher mainLink = Pattern.compile(MAIN_LINK_REGEX).matcher(url);
+        Matcher cssJs = Pattern.compile(CSS_JS_REGEX).matcher(url);
+
 
         if (mainLink.matches()) {
             return generateIndexHtml(url);
         }
+        else if (cssJs.find()) {
+            return generateCssJs(url);
+        }
 
-        return generate(url);
+        return generate(url) + ".html";
     }
 
     private String generate(String url) {
@@ -39,5 +45,12 @@ public class NameGenerator implements Generator {
         url = generate(url);
 
         return url + "\\index.html";
+    }
+
+    private String generateCssJs (String url) {
+
+        url = generate(url);
+
+        return url;
     }
 }
