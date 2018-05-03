@@ -1,5 +1,6 @@
 package com.web.crawler.crawling;
 
+import com.web.crawler.model.Page;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RegexCrawlerTest {
+public class RegexLinkCrawlerTest {
 
     @Test
     public void shouldExtractLinks() {
 
         //Given
-        RegexCrawler regexCrawler = new RegexCrawler();
+        RegexLinkCrawler regexLinkCrawler = new RegexLinkCrawler();
         String url = "http://example.com/";
         String websiteSource = "<!doctype html>\n" +
                 "<html>\n" +
@@ -67,7 +68,7 @@ public class RegexCrawlerTest {
                 "</html>\n";
 
         //When
-        List<String> result = regexCrawler.find(url, websiteSource);
+        List<String> result = regexLinkCrawler.find(new Page(url, websiteSource));
 
         //Then
         Assert.assertEquals(Arrays.asList("http://www.iana.org"), result);
@@ -78,7 +79,7 @@ public class RegexCrawlerTest {
     public void shouldBuildFullLinks() {
 
         //Given
-        RegexCrawler regexCrawler = new RegexCrawler();
+        RegexLinkCrawler regexLinkCrawler = new RegexLinkCrawler();
         String url = "http://example.com/domains/reserved";
         String givenBody = "<link rel=\"stylesheet\" media=\"screen\" href=\"/_css/2015.1/screen.css\"/>" +
                 "\n<script type=\"text/javascript\" src=\"/_js/2013.1/jquery.js\"></script>" +
@@ -95,11 +96,11 @@ public class RegexCrawlerTest {
         expected.add("http://example.com/domains");
         expected.add("http://example.com/time-zones");
         expected.add("http://example.com/about");
-        expected.add("http://www.icann.org");
+        expected.add("https://www.icann.org");
 
 
         //When
-        List<String> result = regexCrawler.find(url, givenBody);
+        List<String> result = regexLinkCrawler.find(new Page(url, givenBody));
         System.out.println(result);
         //Then
         Assert.assertEquals(expected, result);
