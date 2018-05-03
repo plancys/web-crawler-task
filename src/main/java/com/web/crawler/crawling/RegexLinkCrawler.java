@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class RegexLinkCrawler {
-
+//TODO implement better regex`s
     private static final String LINK_REGEX = "(href|src)=\\\"([\\w\\d-_:\\./]+)\\\"";
     private static final String CHECK_LINK_REGEX = "www(.*)|https(.*)|http(.*)";
     private static final String MAIN_LINK_REGEX = "(.*)\\.pl|(.*)\\.org|(.*)\\.com";
@@ -30,7 +30,7 @@ public class RegexLinkCrawler {
                 .map(link -> checkLinks(page.getAddress(), link))
                 .collect(Collectors.toList());
     }
-
+//TODO check if bellow methods are still needed or can be refactored
     private String checkLinks(String url, String link){
 
         Pattern p = Pattern.compile(CHECK_LINK_REGEX);

@@ -71,7 +71,7 @@ public class RegexLinkCrawlerTest {
         List<String> result = regexLinkCrawler.find(new Page(url, websiteSource));
 
         //Then
-        Assert.assertEquals(Arrays.asList("http://www.iana.org"), result);
+        Assert.assertEquals(Arrays.asList("https://www.iana.org"), result);
 
     }
 
@@ -102,6 +102,7 @@ public class RegexLinkCrawlerTest {
         //When
         List<String> result = regexLinkCrawler.find(new Page(url, givenBody));
         System.out.println(result);
+
         //Then
         Assert.assertEquals(expected, result);
     }
