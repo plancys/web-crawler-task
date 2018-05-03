@@ -1,5 +1,7 @@
 package com.web.crawler.model;
 
+import java.util.Objects;
+
 /**
  * This class contains page address and their body
  */
@@ -28,5 +30,20 @@ public class Page {
 
     public String getBody() {
         return body;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Page page = (Page) o;
+        return Objects.equals(address, page.address) &&
+                Objects.equals(body, page.body);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(address, body);
     }
 }
