@@ -29,7 +29,7 @@ public class LinkModifierTestSuite {
                 "<li><a href=\"domains/root.html\">Root Zone Management</a></l\n" +
                 "are provided by <a href=\"http://pti.icann.org\">Public Technical Identifiers</a>,\n" +
                 "<li><a href=\"domains/arpa.html\">.arpa Registry</a></li>\n" +
-                "<li><a href=\"/domains/root\">Root Zone Management</a></l";
+                "<li><a href=\"domains/root.html\">Root Zone Management</a></l";
 
         //When
         String refactoredLinks = modifier.ModifyLinks(source);
