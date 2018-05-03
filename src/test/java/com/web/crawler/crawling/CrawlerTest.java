@@ -15,15 +15,15 @@ import static org.mockito.Mockito.when;
 
 public class CrawlerTest {
 
-    private RegexCrawler regexCrawler;
+    private RegexLinkCrawler regexLinkCrawler;
     private PageExtractor pageExtractor;
     private Crawler crawler;
 
     @Before
     public void setUp() throws Exception {
-        regexCrawler = Mockito.mock(RegexCrawler.class);
+        regexLinkCrawler = Mockito.mock(RegexLinkCrawler.class);
         pageExtractor = Mockito.mock(PageExtractor.class);
-        crawler = new Crawler(regexCrawler, pageExtractor);
+        crawler = new Crawler(regexLinkCrawler, pageExtractor);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CrawlerTest {
 
         //Given
         Page page = new Page("", "");
-        when(regexCrawler.find(page.getAddress(), page.getBody())).thenReturn(Arrays.asList("www.example.com"));
+        when(regexLinkCrawler.find(page)).thenReturn(Arrays.asList("www.example.com"));
         when(pageExtractor.extractPage("www.example.com")).thenReturn(new Page("expected adress", "expectedBody"));
 
         Collection<Page> expected = new ArrayList<>();

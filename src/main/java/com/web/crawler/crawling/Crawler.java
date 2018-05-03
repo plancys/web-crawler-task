@@ -9,18 +9,18 @@ import java.util.stream.Collectors;
 
 public class Crawler implements WebCrawler {
 
-    private RegexCrawler regexCrawler;
+    private RegexLinkCrawler regexLinkCrawler;
     private PageExtractor pageExtractor;
 
-    public Crawler(RegexCrawler regexCrawler, PageExtractor pageExtractor) {
-        this.regexCrawler = regexCrawler;
+    public Crawler(RegexLinkCrawler regexLinkCrawler, PageExtractor pageExtractor) {
+        this.regexLinkCrawler = regexLinkCrawler;
         this.pageExtractor = pageExtractor;
     }
 
     @Override
     public Collection<Page> crawl(Page page) {
 
-        List<String> links = regexCrawler.find(page.getAddress(), page.getBody());
+        List<String> links = regexLinkCrawler.find(page);
 
         return links.stream()
                 .map(link -> pageExtractor.extractPage(link))
