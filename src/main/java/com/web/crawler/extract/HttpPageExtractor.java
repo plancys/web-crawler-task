@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class HttpPageExtractor implements PageExtractor {
-
+//TODO check if this code can be refactored
     @Override
     public Page extractPage(String link) {
         URL url;
@@ -43,7 +43,7 @@ public class HttpPageExtractor implements PageExtractor {
         }
         return new Page(link, sb.toString());
     }
-
+//TODO this is proof of concept for downloading images
     public static void main(String[] args) throws IOException {
         HttpPageExtractor httpPageExtractor = new HttpPageExtractor();
         Page page = httpPageExtractor.extractPage("http://www.obrazki.org/upload/ob_0_33793200_1306404375.JPEG");

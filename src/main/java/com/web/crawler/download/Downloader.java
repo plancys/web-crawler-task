@@ -36,7 +36,7 @@ public class Downloader implements PageDownloader {
 
         byte[] data = modifier.ModifyLinks(pageSnapshot.getPage().getBody()).getBytes();
         Path p = Paths.get(outputDirectory.getAbsolutePath() + SLASH + generator.generateName(pageSnapshot));
-
+//TODO refactor this try to try-with-resources
         OutputStream out = null;
         try {
             Files.createDirectories(p.getParent());

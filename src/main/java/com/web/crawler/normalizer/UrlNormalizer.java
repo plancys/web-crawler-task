@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UrlNormalizer implements Normalizer {
-
+//TODO Need to test this normalizer strategy, check if https protocol can be applied to all websites
     private static final String NORMALIZER_REGEX = "(http(s)?://)?(www\\.)?([-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))";
 
     @Override

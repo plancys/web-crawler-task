@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LinkModifier implements Modifier {
-
+//TODO need to test it and improve those REGEX`s in case they dont work in some conditions
     private static final String LINKS_TO_DELETE_SLASH = "((src|href)=\\\")/";
     private static final String LINKS_TO_ADD_EXTENSION = "(href=\")([\\w\\.-]+/)([\\w]+\")";
-
+//TODO need to implement an algorithm that will recognize which link modifying strategy to use
     @Override
     public String ModifyLinks(String websiteSource) {
 
