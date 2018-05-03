@@ -35,8 +35,8 @@ public class NameGeneratorTestSuite {
 
         //Then
         assertEquals("iana.org\\index.html", generatedName1);
-        assertEquals("iana.org\\domains\\reserved", generatedName2);
-        assertEquals("iana.org\\domains\\reserved", generatedName3);
-        assertEquals("iana.org\\domains\\reserved", generatedName4);
+        assertEquals("iana.org\\domains\\reserved.html", generatedName2);
+        assertEquals("iana.org\\domains\\reserved.html", generatedName3);
+        assertEquals("iana.org\\domains\\reserved.html", generatedName4);
     }
 }
