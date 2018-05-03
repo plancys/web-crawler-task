@@ -29,9 +29,9 @@ public class DownloaderTestSuite {
     public void shouldDownloadPage() throws IOException {
 
         //Given
-        Page page = new Page("www.example.com", "example");
+        Page page = new Page("https://www.example.com", "example");
         Collection<PageSnapshot> links = new HashSet<>();
-        links.add(new PageSnapshot(new Page("example.com/contact/domains", "contactBody"), new HashSet<>()));
+        links.add(new PageSnapshot(new Page("https://www.example.com/contact/domains", "contactBody"), new HashSet<>()));
 
         PageSnapshot pageSnapshot = new PageSnapshot(page, links);
 
@@ -43,7 +43,7 @@ public class DownloaderTestSuite {
 
         //Then
         List<String> indexContent = Files.readAllLines(new File(siteDirectory, "example.com\\index.html").toPath());
-        List<String> contactContent = Files.readAllLines(new File(siteDirectory, "example.com\\contact\\domains").toPath());
+        List<String> contactContent = Files.readAllLines(new File(siteDirectory, "example.com\\contact\\domains.html").toPath());
         assertEquals(indexContent, Arrays.asList("example"));
         assertEquals(contactContent, Arrays.asList("contactBody"));
 

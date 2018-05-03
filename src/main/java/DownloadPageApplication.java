@@ -29,7 +29,7 @@ public class DownloadPageApplication {
         );
 
         pageDownloader.downloadPage(
-                pageSnapshotCreator.createPageNode(new UrlNormalizer().normalize("https://www.nytimes.com/"), 2),
+                pageSnapshotCreator.createPageNode(new UrlNormalizer().normalize("example.com/"), 2),
                 tempDirectory);
     }
 
