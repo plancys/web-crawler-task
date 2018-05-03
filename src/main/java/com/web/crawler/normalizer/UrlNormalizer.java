@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class UrlNormalizer implements Normalizer {
 
-    private static final String NORMALIZER_REGEX = "http[s]?://[w\\\\.]*([\\w-]+\\.(\\w{2,3}))";
+    private static final String NORMALIZER_REGEX = "(http(s)?://)?(www\\.)?([-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))";
 
     @Override
     public String normalize(String url) {
@@ -13,6 +13,9 @@ public class UrlNormalizer implements Normalizer {
         Matcher m = Pattern.compile(NORMALIZER_REGEX).matcher(url);
         m.find();
 
-        return "http://www." + m.group(1);
+        if (m.group(4).endsWith("/")) {
+            return "https://www." + m.group(4).substring(0, m.group(4).length() - 1);
+        }
+        return "https://www." + m.group(4);
     }
 }

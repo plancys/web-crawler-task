@@ -17,15 +17,16 @@ public class UrlNormalizerTestSuite {
     public void shouldNormalizeUrl() {
 
         //Given
-        String testUrlOne = "http://www.example.com";
-        String testUrlTwo = "http://example.com";
-        String testUrlThree = "example.com";
+        String testUrlOne = "http://www.example.com/";
+        String testUrlTwo = "http://example.com/";
+        String testUrlThree = "example.com/";
         String testUrlFour = "example.com/";
-        String testUrlFive = "https://www.iana.org/domains/reserved";
+        String testUrlFive = "https://www.iana.org/domains/reserved/";
         String testUrlSix = "http://iana.org/_js_xyz.js";
 
-        String expectedCaseOne = "http://www.example.com";
-        String expectedCaseTwo = "http://www.iana.org";
+        String expectedCaseOne = "https://www.example.com";
+        String expectedCaseTwo = "https://www.iana.org/domains/reserved";
+        String expectedCaseThree = "https://www.iana.org/_js_xyz.js";
 
         //When
         String validatedUrlOne = normalizer.normalize(testUrlOne);
@@ -43,6 +44,6 @@ public class UrlNormalizerTestSuite {
         assertEquals(expectedCaseOne, validatedUrlFour);
 
         assertEquals(expectedCaseTwo, validatedUrlFive);
-        assertEquals(expectedCaseTwo, validatedUrlSix);
+        assertEquals(expectedCaseThree, validatedUrlSix);
     }
 }
